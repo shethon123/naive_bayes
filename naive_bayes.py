@@ -26,15 +26,7 @@ y_training = np.array(df.values)[:,-1].astype('f')
 
 #update the training class values according to the discretization (11 values only)
 #--> add your Python code here
-for i in range(len(y_training)):
-
-    difference = 100
-    closest = 0
-    for j in classes:
-        if abs(y_training[i] - j) < difference:
-            closest = j
-            difference = abs(y_training[i] - j)
-    y_training[i] = classes.index(closest)
+y_training = np.digitize(y_training, bins=classes)
 
 #reading the test data
 #--> add your Python code here
@@ -46,14 +38,7 @@ y_test = np.array(df.values)[:,-1].astype('f')
 
 #update the test class values according to the discretization (11 values only)
 #--> add your Python code here
-for i in range(len(y_test)):
-    difference = 100
-    closest = 0
-    for j in classes:
-        if abs(y_test[i] - j) < difference:
-            closest = j
-            difference = abs(y_test[i] - j)
-    y_test[i] = classes.index(closest)
+y_test = np.digitize(y_test, bins=classes)
 
 #loop over the hyperparameter value (s)
 #--> add your Python code here
